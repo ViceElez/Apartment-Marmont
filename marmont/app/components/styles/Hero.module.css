@@ -1,10 +1,5 @@
-/* Hero.module.css */
-/* Cinematic Hero Section — Architecture Portfolio */
-
-/* ─── Font Import ─── */
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@700;800&display=swap');
 
-/* ─── CSS Custom Properties ─── */
 :root {
     --color-white: #ffffff;
     --color-black: #0a0a0a;
@@ -17,9 +12,6 @@
     --easing-out: cubic-bezier(0.0, 0, 0.2, 1);
 }
 
-/* ─── KEYFRAMES ─── */
-
-/* Phase 1 → 2: Title scales up from center */
 @keyframes titleReveal {
     0% {
         transform: translate(-50%, -50%) scale(0.35);
@@ -43,62 +35,31 @@
     }
 }
 
-/* Phase 2: White background fades out */
 @keyframes whiteReveal {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        pointer-events: none;
-    }
+    0% { opacity: 1; }
+    100% { opacity: 0; pointer-events: none; }
 }
 
-/* Phase 2: Grid lines appear */
 @keyframes gridAppear {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-/* Phase 3: Peripheral UI fades in + slides up */
 @keyframes uiFadeUp {
-    0% {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Phase 3: Social icons (slide left from edge) */
 @keyframes socialSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(12px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    0% { opacity: 0; transform: translateX(12px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Dark overlay fade in with image */
 @keyframes overlayFadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-/* ─── HERO SECTION ─── */
 .hero {
     position: relative;
     width: 100vw;
@@ -108,7 +69,6 @@
     background-color: var(--color-white);
 }
 
-/* ─── BACKGROUND IMAGE ─── */
 .backgroundLayer {
     position: absolute;
     inset: 0;
@@ -127,7 +87,6 @@
     transform: scale(1.05);
 }
 
-/* ─── DARK OVERLAY ─── */
 .darkOverlay {
     position: absolute;
     inset: 0;
@@ -141,7 +100,6 @@
     animation: overlayFadeIn 0.8s var(--easing) 1.5s both;
 }
 
-/* ─── VERTICAL GRID LINES ─── */
 .gridLines {
     position: absolute;
     inset: 0;
@@ -158,7 +116,6 @@
     pointer-events: none;
 }
 
-/* ─── WHITE REVEAL OVERLAY ─── */
 .whiteReveal {
     position: absolute;
     inset: 0;
@@ -168,7 +125,6 @@
     pointer-events: none;
 }
 
-/* ─── MAIN GRID ─── */
 .grid {
     position: relative;
     z-index: 5;
@@ -182,14 +138,13 @@
     box-sizing: border-box;
 }
 
-/* ─── BRAND NAME — Col 1, Row 1 ─── */
+/* ─── BRAND ─── */
 .brandCol {
     grid-column: 1;
     grid-row: 1;
     display: flex;
     align-items: flex-start;
     padding-top: 0.25rem;
-
     opacity: 0;
     animation: uiFadeUp 0.9s var(--easing) 2.2s both;
 }
@@ -205,7 +160,7 @@
     margin: 0;
 }
 
-/* ─── NAVIGATION — Col 3–5, Row 1 ─── */
+
 .navCol {
     grid-column: 3 / 6;
     grid-row: 1;
@@ -213,7 +168,6 @@
     justify-content: flex-end;
     align-items: flex-start;
     padding-top: 0.25rem;
-
     opacity: 0;
     animation: uiFadeUp 0.9s var(--easing) 2.4s both;
 }
@@ -246,27 +200,23 @@
     transition: width 0.4s var(--easing);
 }
 
-.navLink:hover {
-    color: var(--color-white);
-}
+.navLink:hover { color: var(--color-white); }
+.navLink:hover::after { width: 100%; }
 
-.navLink:hover::after {
-    width: 100%;
-}
 
-/* ─── HERO TITLE — Absolutely centered ─── */
-/* Title sits independently, not in grid flow */
 .titleCol {
-    /* Remove from grid flow; center absolutely */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 6;
-    text-align: center;
-    white-space: nowrap;
-    pointer-events: none;
-}
+     position: absolute;
+     top: 55%;
+     left: 51%;
+     transform: translate(-50%, -50%);
+     z-index: 6;
+     text-align: center;
+     /* allow the large title to wrap instead of overflowing the viewport */
+     white-space: normal;
+     /* increased width to prevent awkward line breaks */
+     max-width: calc(100vw - 2rem);
+     pointer-events: none;
+ }
 
 .title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -277,23 +227,21 @@
     padding: 0;
     letter-spacing: -0.03em;
     text-transform: uppercase;
-
-    /* Phase 1-2 Animation */
     transform-origin: center center;
     animation: titleReveal 2.5s var(--easing) 0s both;
-
-    /* Text rendering */
     -webkit-font-smoothing: antialiased;
+    /* allow wrapping and break long words if necessary so the title won't overflow */
+    white-space: normal;
+    max-width: 100%;
 }
 
-/* ─── SOCIAL ICONS — Col 5, vertically centered ─── */
+
 .socialsCol {
     grid-column: 5;
     grid-row: 1 / 4;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
     opacity: 0;
     animation: socialSlideIn 0.9s var(--easing) 2.8s both;
 }
@@ -318,14 +266,126 @@
     transform: scale(1.15);
 }
 
-/* ─── BOTTOM INFO — Col 1–2, Row 3 ─── */
+
+.reviewsCol {
+     grid-column: 1;
+     grid-row: 1 / 4;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+     padding-top: 26vh;
+     position: relative;
+     z-index: 20;
+     opacity: 0;
+     animation: uiFadeUp 0.9s var(--easing) 2.6s both;
+ }
+
+.reviewsButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--color-text-primary);
+    padding: 0.65rem 1rem;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    transition: border-color 0.3s var(--easing), background 0.3s var(--easing);
+}
+
+.reviewsButton:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.65);
+}
+
+.reviewsButtonLabel {
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+.reviewsButtonScore {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    letter-spacing: 0.02em;
+}
+
+
+.reviewsPanel {
+    position: absolute;
+    left: calc(100% + 2px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-6px);
+    background: rgba(8, 8, 8, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    padding: 1.1rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 210px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s var(--easing), transform 0.25s var(--easing);
+}
+
+.reviewsPanel.reviewsPanelVisible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+}
+
+.reviewItem {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.platformIcon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.reviewDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.platformName {
+    font-size: 0.67rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+.stars {
+    font-size: 0.62rem;
+    color: #f5c518;
+    letter-spacing: 0.04em;
+}
+
+.score {
+    font-size: 0.6rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+}
+
 .infoCol {
     grid-column: 1 / 3;
     grid-row: 3;
     display: flex;
     align-items: flex-end;
     padding-bottom: 0.5rem;
-
     opacity: 0;
     animation: uiFadeUp 1s var(--easing) 2.6s both;
 }
@@ -373,7 +433,6 @@
     letter-spacing: 0.02em;
 }
 
-/* ─── CTA BUTTON ─── */
 .ctaButton {
     display: inline-block;
     align-self: flex-start;
@@ -400,7 +459,6 @@
     transform: translateY(-1px);
 }
 
-/* ─── RESPONSIVE: ≤ 768px ─── */
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
@@ -413,27 +471,19 @@
         text-align: center;
     }
 
-    /* Brand stays col 1 */
     .brandCol {
         grid-column: 1;
         grid-row: 1;
     }
 
-    /* Nav moves to col 2 */
     .navCol {
         grid-column: 2;
         grid-row: 1;
     }
 
-    .nav {
-        gap: 1rem;
-    }
+    .nav { gap: 1rem; }
+    .navLink { font-size: 0.65rem; }
 
-    .navLink {
-        font-size: 0.65rem;
-    }
-
-    /* Socials shift to row 1, col 2 bottom-right */
     .socialsCol {
         grid-column: 2;
         grid-row: 1 / 3;
@@ -447,7 +497,23 @@
         gap: 0.8rem;
     }
 
-    /* Info spans full width */
+    .reviewsCol {
+        grid-column: 1;
+        grid-row: 2;
+        justify-content: flex-start;
+        padding-top: 1rem;
+    }
+
+    .reviewsPanel {
+        left: 0;
+        top: calc(100% + 8px);
+        transform: translateY(-6px);
+    }
+
+    .reviewsPanel.reviewsPanelVisible {
+        transform: translateY(0);
+    }
+
     .infoCol {
         grid-column: 1 / 3;
         grid-row: 3;
@@ -458,16 +524,10 @@
         gap: 0.8rem;
     }
 
-    .projectDescription {
-        font-size: 0.7rem;
-    }
-
-    .credits {
-        gap: 1.5rem;
-    }
+    .projectDescription { font-size: 0.7rem; }
+    .credits { gap: 1.5rem; }
 }
 
-/* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
     .title,
     .whiteReveal,
@@ -476,7 +536,8 @@
     .brandCol,
     .navCol,
     .socialsCol,
-    .infoCol {
+    .infoCol,
+    .reviewsCol {
         animation: none;
         opacity: 1;
     }
@@ -486,7 +547,5 @@
         color: var(--color-white);
     }
 
-    .whiteReveal {
-        opacity: 0;
-    }
+    .whiteReveal { opacity: 0; }
 }

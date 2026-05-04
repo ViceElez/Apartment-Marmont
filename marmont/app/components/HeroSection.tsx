@@ -1,58 +1,51 @@
+"use client"
+
+import { useState } from 'react';
 import Image from 'next/image';
 import styles from './styles/Hero.module.css';
 
 const Hero = () => {
+    const [showReviews, setShowReviews] = useState(false);
+
     return (
         <section className={styles.hero}>
-            {/* Background Image Layer */}
             <div className={styles.backgroundLayer}>
                 <Image
-                    src="/villa-vingt.jpg"
+                    src="/images/split/livingRoom1.webp"
                     alt="Villa Vingt - Modern Mountain Home in Northern Québec"
                     fill
                     priority
-                    quality={95}
                     className={styles.backgroundImage}
                     sizes="100vw"
                 />
             </div>
 
-            {/* Dark Overlay */}
             <div className={styles.darkOverlay} />
-
-            {/* Grid Lines Overlay */}
             <div className={styles.gridLines} aria-hidden="true" />
-
-            {/* White Reveal Overlay (animates away) */}
             <div className={styles.whiteReveal} aria-hidden="true" />
 
-            {/* Main Grid Content */}
             <div className={styles.grid}>
 
-                {/* Col 1 — Brand / Studio Name */}
                 <div className={styles.brandCol}>
                     <p className={styles.brandName}>
-                        Bourgeois /<br />
-                        Lechasseur<br />
-                        Architectes
+                        Marmont /<br />
+                        Apartment<br />
+                        Marmont
                     </p>
                 </div>
 
-                {/* Col 2-4 — Hero Title (centered) */}
                 <div className={styles.titleCol}>
-                    <h1 className={styles.title}>Villa Vingt</h1>
+                    <h1 className={styles.title}>Apartment Marmont</h1>
                 </div>
 
-                {/* Col 3-5 — Navigation */}
                 <div className={styles.navCol}>
                     <nav className={styles.nav} aria-label="Main navigation">
-                        <a href="#projects" className={styles.navLink}>Projects</a>
+                        <a href="#projects" className={styles.navLink}>Apartments</a>
                         <a href="#about" className={styles.navLink}>About</a>
                         <a href="#contact" className={styles.navLink}>Contact</a>
                     </nav>
                 </div>
 
-                {/* Right Edge — Social Icons */}
                 <div className={styles.socialsCol}>
                     <div className={styles.socials}>
                         <a href="#" className={styles.socialLink} aria-label="Twitter">
@@ -73,7 +66,58 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* Bottom Left — Project Info & CTA */}
+                <div className={styles.reviewsCol}>
+                    <button
+                        className={styles.reviewsButton}
+                        aria-label="View our ratings"
+                        onMouseEnter={() => setShowReviews(true)}
+                        onMouseLeave={() => setShowReviews(false)}
+                        onClick={() => setShowReviews(v => !v)}
+                    >
+                        <span className={styles.reviewsButtonLabel}>Our Reviews</span>
+                        <span className={styles.reviewsButtonScore}>4.9 ★</span>
+                    </button>
+
+                    <div
+                        className={`${styles.reviewsPanel} ${showReviews ? styles.reviewsPanelVisible : ''}`}
+                        onMouseEnter={() => setShowReviews(true)}
+                        onMouseLeave={() => setShowReviews(false)}
+                    >
+                        <div className={styles.reviewItem}>
+                            <svg className={styles.platformIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 3c2.387 0 4.567.868 6.243 2.299A9.463 9.463 0 0 0 12 4.5a9.463 9.463 0 0 0-6.243 2.799C7.433 3.868 9.613 3 12 3zm0 15a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+                            </svg>
+                            <div className={styles.reviewDetails}>
+                                <span className={styles.platformName}>Airbnb</span>
+                                <span className={styles.stars}>★★★★★</span>
+                                <span className={styles.score}>4.97 · 128 reviews</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.reviewItem}>
+                            <svg className={styles.platformIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                            </svg>
+                            <div className={styles.reviewDetails}>
+                                <span className={styles.platformName}>Booking.com</span>
+                                <span className={styles.stars}>★★★★★</span>
+                                <span className={styles.score}>9.4 · 84 reviews</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.reviewItem}>
+                            <svg className={styles.platformIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2l2.582 7.953H22.5l-6.79 4.933 2.582 7.953L12 18.012l-6.292 4.827 2.582-7.953L2 9.953h7.918z" />
+                            </svg>
+                            <div className={styles.reviewDetails}>
+                                <span className={styles.platformName}>TripAdvisor</span>
+                                <span className={styles.stars}>★★★★★</span>
+                                <span className={styles.score}>5.0 · 61 reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className={styles.infoCol}>
                     <div className={styles.projectInfo}>
                         <p className={styles.projectDescription}>
@@ -82,16 +126,6 @@ const Hero = () => {
                             hillside in Northern Québec, at the edge of a ski resort.
                         </p>
 
-                        <div className={styles.credits}>
-                            <div className={styles.creditBlock}>
-                                <span className={styles.creditLabel}>Words by</span>
-                                <span className={styles.creditName}>Jillian Japka</span>
-                            </div>
-                            <div className={styles.creditBlock}>
-                                <span className={styles.creditLabel}>Photography by</span>
-                                <span className={styles.creditName}>Adrien Williams</span>
-                            </div>
-                        </div>
 
                         <a href="#learn-more" className={styles.ctaButton}>
                             learn more
