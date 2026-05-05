@@ -10,69 +10,87 @@
     --color-cta-border: rgba(255, 255, 255, 0.6);
     --easing: cubic-bezier(0.4, 0, 0.2, 1);
     --easing-out: cubic-bezier(0.0, 0, 0.2, 1);
+    --transition-duration: 700ms;
 }
 
+/* ─── KEYFRAMES ─── */
 @keyframes titleReveal {
-    0% {
-        transform: translate(-50%, -50%) scale(0.35);
-        opacity: 0;
-        color: #1a1a1a;
-        letter-spacing: -0.02em;
-    }
-    30% {
-        opacity: 1;
-        color: #1a1a1a;
-    }
-    60% {
-        transform: translate(-50%, -50%) scale(0.85);
-        color: #1a1a1a;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        color: var(--color-white);
-        letter-spacing: -0.03em;
-    }
+    0%   { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes whiteReveal {
-    0% { opacity: 1; }
+    0%   { opacity: 1; }
     100% { opacity: 0; pointer-events: none; }
 }
 
 @keyframes gridAppear {
-    0% { opacity: 0; }
+    0%   { opacity: 0; }
     100% { opacity: 1; }
 }
 
 @keyframes uiFadeUp {
-    0% { opacity: 0; transform: translateY(18px); }
+    0%   { opacity: 0; transform: translateY(18px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes socialSlideIn {
-    0% { opacity: 0; transform: translateX(12px); }
+    0%   { opacity: 0; transform: translateX(12px); }
     100% { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes overlayFadeIn {
-    0% { opacity: 0; }
+    0%   { opacity: 0; }
     100% { opacity: 1; }
 }
 
+@keyframes bgFadeIn {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes bgFadeOut {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes contentFade {
+    0%   { opacity: 1; }
+    40%  { opacity: 0; }
+    60%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ─── HERO SHELL ─── */
 .hero {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     font-family: 'Barlow', sans-serif;
-    background-color: var(--color-white);
+    background-color: var(--color-black);
 }
 
+/* ─── BACKGROUND CROSS-FADE ─── */
 .backgroundLayer {
     position: absolute;
     inset: 0;
     z-index: 0;
+}
+
+.bgSlide {
+    position: absolute;
+    inset: 0;
+}
+
+.bgSlideIn {
+    z-index: 1;
+    animation: bgFadeIn var(--transition-duration) var(--easing) forwards;
+}
+
+.bgSlideOut {
+    z-index: 2;
+    animation: bgFadeOut var(--transition-duration) var(--easing) forwards;
 }
 
 .backgroundImage {
@@ -90,11 +108,11 @@
 .darkOverlay {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 3;
     background: linear-gradient(
             160deg,
-            rgba(0, 0, 0, 0.45) 0%,
-            rgba(0, 0, 0, 0.15) 40%,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.2) 50%,
             rgba(0, 0, 0, 0.5) 100%
     );
     animation: overlayFadeIn 0.8s var(--easing) 1.5s both;
@@ -103,7 +121,7 @@
 .gridLines {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 4;
     background: repeating-linear-gradient(
             to right,
             transparent,
@@ -125,6 +143,7 @@
     pointer-events: none;
 }
 
+/* ─── GRID ─── */
 .grid {
     position: relative;
     z-index: 5;
@@ -132,7 +151,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr auto auto;
     padding: 2rem;
     gap: 0;
     box-sizing: border-box;
@@ -160,7 +179,7 @@
     margin: 0;
 }
 
-
+/* ─── NAV ─── */
 .navCol {
     grid-column: 3 / 6;
     grid-row: 1;
@@ -203,42 +222,63 @@
 .navLink:hover { color: var(--color-white); }
 .navLink:hover::after { width: 100%; }
 
-
+/* ─── TITLE ─── */
 .titleCol {
-     position: absolute;
-     top: 55%;
-     left: 51%;
-     transform: translate(-50%, -50%);
-     z-index: 6;
-     text-align: center;
-     /* allow the large title to wrap instead of overflowing the viewport */
-     white-space: normal;
-     /* increased width to prevent awkward line breaks */
-     max-width: calc(100vw - 2rem);
-     pointer-events: none;
- }
+    grid-column: 1 / 5;
+    grid-row: 2;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+    overflow: hidden;
+    opacity: 0;
+    animation: uiFadeUp 0.7s var(--easing) 1.9s both;
+}
 
+/*
+ * Base title styles — no animation here.
+ * Animation is applied via .titleEntering (once, on load)
+ * or .titleFading (on each slide transition).
+ */
 .title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(5rem, 12vw, 13rem);
+    font-size: clamp(3.5rem, 9vw, 11rem);
     font-weight: 800;
-    line-height: 0.9;
+    line-height: 0.88;
     margin: 0;
     padding: 0;
     letter-spacing: -0.03em;
     text-transform: uppercase;
-    transform-origin: center center;
-    animation: titleReveal 2.5s var(--easing) 0s both;
+    text-align: left;
+    color: var(--color-white);
     -webkit-font-smoothing: antialiased;
-    /* allow wrapping and break long words if necessary so the title won't overflow */
-    white-space: normal;
-    max-width: 100%;
+    word-break: break-word;
 }
 
+/*
+ * Applied only before hasLoaded becomes true (i.e. on first render).
+ * Fires the slide-up reveal exactly once.
+ */
+.titleEntering {
+    animation: titleReveal 0.8s var(--easing) both;
+}
 
+/*
+ * Applied while a slide transition is in progress.
+ * Cross-fades the text content in-place — no remount, no double-fire.
+ */
+.titleFading {
+    animation: contentFade var(--transition-duration) var(--easing) both;
+}
+
+/* Fades text content in-place (description, score) during slide change */
+.contentFading {
+    animation: contentFade var(--transition-duration) var(--easing) both;
+}
+
+/* ─── SOCIALS ─── */
 .socialsCol {
     grid-column: 5;
-    grid-row: 1 / 4;
+    grid-row: 1 / 5;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -266,20 +306,25 @@
     transform: scale(1.15);
 }
 
-
+/* ─── REVIEWS ─── */
 .reviewsCol {
-     grid-column: 1;
-     grid-row: 1 / 4;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: flex-start;
-     padding-top: 26vh;
-     position: relative;
-     z-index: 20;
-     opacity: 0;
-     animation: uiFadeUp 0.9s var(--easing) 2.6s both;
- }
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: 0.5rem;
+    z-index: 20;
+    opacity: 0;
+    animation: uiFadeUp 0.9s var(--easing) 2.6s both;
+}
+
+.reviewsWrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+}
 
 .reviewsButton {
     display: flex;
@@ -315,13 +360,13 @@
     letter-spacing: 0.02em;
 }
 
-
+/* Desktop: panel opens to the right, centred on button */
 .reviewsPanel {
     position: absolute;
-    left: calc(100% + 2px);
+    left: calc(100% + 8px);
     top: 50%;
     transform: translateY(-50%) translateX(-6px);
-    background: rgba(8, 8, 8, 0.78);
+    background: rgba(8, 8, 8, 0.82);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.13);
@@ -330,9 +375,11 @@
     flex-direction: column;
     gap: 1rem;
     min-width: 210px;
+    white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s var(--easing), transform 0.25s var(--easing);
+    z-index: 30;
 }
 
 .reviewsPanel.reviewsPanelVisible {
@@ -380,8 +427,9 @@
     letter-spacing: 0.02em;
 }
 
+/* ─── BOTTOM INFO ─── */
 .infoCol {
-    grid-column: 1 / 3;
+    grid-column: 2 / 5;
     grid-row: 3;
     display: flex;
     align-items: flex-end;
@@ -394,7 +442,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    max-width: 320px;
+    max-width: 340px;
 }
 
 .projectDescription {
@@ -405,32 +453,6 @@
     color: var(--color-text-secondary);
     margin: 0;
     letter-spacing: 0.01em;
-}
-
-.credits {
-    display: flex;
-    gap: 2rem;
-}
-
-.creditBlock {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-}
-
-.creditLabel {
-    font-size: 0.6rem;
-    font-weight: 400;
-    color: var(--color-text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.creditName {
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--color-text-primary);
-    letter-spacing: 0.02em;
 }
 
 .ctaButton {
@@ -459,37 +481,85 @@
     transform: translateY(-1px);
 }
 
+/* ─── PAGINATION DOTS ─── */
+.dotsCol {
+    grid-column: 1 / 3;
+    grid-row: 4;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    opacity: 0;
+    animation: uiFadeUp 0.9s var(--easing) 3s both;
+}
+
+.dot {
+    width: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.4s var(--easing), width 0.4s var(--easing);
+}
+
+.dotActive {
+    width: 36px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* ─── MOBILE ─── */
 @media (max-width: 768px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto auto;
         padding: 1.25rem;
     }
 
+    .brandCol { grid-column: 1; grid-row: 1; }
+    .navCol   { grid-column: 2; grid-row: 1; }
+    .nav      { gap: 1rem; }
+    .navLink  { font-size: 0.65rem; }
+
+    .titleCol {
+        grid-column: 1 / 3;
+        grid-row: 2;
+        align-items: flex-start;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
     .title {
-        font-size: clamp(3.5rem, 14vw, 6rem);
-        white-space: normal;
-        text-align: center;
+        font-size: clamp(2.8rem, 11vw, 5rem);
+        text-align: left;
+        word-break: break-word;
     }
 
-    .brandCol {
+    .reviewsCol {
         grid-column: 1;
-        grid-row: 1;
+        grid-row: 3;
+        justify-content: flex-start;
+        padding-bottom: 1rem;
     }
 
-    .navCol {
-        grid-column: 2;
-        grid-row: 1;
+    /* Mobile: panel opens downward */
+    .reviewsPanel {
+        left: 0;
+        top: calc(100% + 6px);
+        transform: translateX(0) translateY(-6px);
     }
 
-    .nav { gap: 1rem; }
-    .navLink { font-size: 0.65rem; }
+    .reviewsPanel.reviewsPanelVisible {
+        transform: translateX(0) translateY(0);
+    }
 
     .socialsCol {
         grid-column: 2;
-        grid-row: 1 / 3;
+        grid-row: 3;
         align-items: flex-end;
         justify-content: flex-end;
-        padding-bottom: 1rem;
+        padding-bottom: 0.5rem;
     }
 
     .socials {
@@ -497,26 +567,11 @@
         gap: 0.8rem;
     }
 
-    .reviewsCol {
-        grid-column: 1;
-        grid-row: 2;
-        justify-content: flex-start;
-        padding-top: 1rem;
-    }
-
-    .reviewsPanel {
-        left: 0;
-        top: calc(100% + 8px);
-        transform: translateY(-6px);
-    }
-
-    .reviewsPanel.reviewsPanelVisible {
-        transform: translateY(0);
-    }
-
     .infoCol {
         grid-column: 1 / 3;
-        grid-row: 3;
+        grid-row: 4;
+        align-items: flex-end;
+        padding-bottom: 0;
     }
 
     .projectInfo {
@@ -525,11 +580,18 @@
     }
 
     .projectDescription { font-size: 0.7rem; }
-    .credits { gap: 1.5rem; }
+
+    .dotsCol {
+        grid-column: 1 / 3;
+        grid-row: 5;
+        padding-top: 0.75rem;
+    }
 }
 
+/* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
     .title,
+    .titleCol,
     .whiteReveal,
     .gridLines,
     .darkOverlay,
@@ -537,15 +599,18 @@
     .navCol,
     .socialsCol,
     .infoCol,
-    .reviewsCol {
+    .reviewsCol,
+    .dotsCol,
+    .bgSlideIn,
+    .bgSlideOut,
+    .titleEntering,
+    .titleFading,
+    .contentFading {
         animation: none;
         opacity: 1;
     }
 
-    .title {
-        transform: translate(-50%, -50%) scale(1);
-        color: var(--color-white);
-    }
-
+    .title       { color: var(--color-white); }
     .whiteReveal { opacity: 0; }
+    .bgSlideOut  { opacity: 0; }
 }
