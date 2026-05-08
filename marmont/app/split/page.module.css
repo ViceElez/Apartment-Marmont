@@ -1,16 +1,15 @@
-
 .page {
     min-height: 100vh;
     position: relative;
     background: radial-gradient(
             circle at top,
-            #1a1f1f 0%,
-            #0b0f10 50%,
-            #050607 100%
+            #f5f1ea 0%,
+            #ece6dc 55%,
+            #e2d9cd 100%
     );
-    color: #f0ebe3;
+    color: #2b2420;
     padding: 80px 40px;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* ---------------- LAYER WRAPPER ---------------- */

@@ -1,6 +1,7 @@
 .section {
     width: 100%;
-    padding: 40px 0;
+    padding: 30px 0 40px;
+    overflow-x: hidden;
 }
 
 .header {
@@ -17,16 +18,28 @@
 
 .scrollWrapper {
     position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: visible;
     width: 100%;
+    contain: layout;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollWrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .track {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     width: max-content;
     cursor: grab;
     will-change: transform;
+    padding: 8px 0;
+    touch-action: pan-y;
 }
 .track:active {
     cursor: grabbing;
@@ -45,24 +58,42 @@
 
 .fadeLeft {
     left: 0;
-    background: linear-gradient(to right, #000, transparent);
+    background: linear-gradient(to right, rgba(248, 242, 232, 0.98), transparent);
 }
 
 .fadeRight {
     right: 0;
-    background: linear-gradient(to left, #000, transparent);
+    background: linear-gradient(to left, rgba(248, 242, 232, 0.98), transparent);
 }
 
 .card {
     position: relative;
-    width: 260px;
-    height: 320px;
-    border-radius: 20px;
-    overflow: hidden;
-    flex-shrink: 0;
-    color: white;
+    width: clamp(260px, calc(100vw - 96px), 520px);
+    min-height: 160px;
+    border-radius: 14px;
+    border: 1px solid rgba(190, 176, 162, 0.5);
+    background: rgba(248, 242, 232, 0.9);
+    color: #2b2420;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px 24px 20px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+@media (max-width: 640px) {
+    .track {
+        gap: 16px;
+    }
+
+    .card {
+        width: calc(100vw - 56px);
+        padding: 18px 20px 18px;
+    }
 }
 
 /* BACKGROUND */
@@ -80,7 +111,7 @@
 .cardOverlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.25);
+    background: rgba(255, 255, 255, 0.18);
 }
 
 /* BADGE */
@@ -102,27 +133,49 @@
     justify-content: flex-end;
 }
 
-.cardType {
-    font-size: 12px;
-    opacity: 0.8;
+.cardRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(190, 176, 162, 0.5);
 }
 
-.cardName {
-    font-size: 18px;
+.cardTitle {
+    font-size: 20px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: "Georgia", "Times New Roman", serif;
 }
 
-.cardAddress {
-    font-size: 12px;
-    opacity: 0.8;
+.cardPrice {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7c6a5d;
+}
+
+.cardIngredients {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #5a4b42;
 }
 
 .cardMeta {
-    margin-top: 10px;
+    margin-top: 8px;
     display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    opacity: 0.9;
+    gap: 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7c6a5d;
+}
+
+.cardMetaItem + .cardMetaItem {
+    padding-left: 12px;
+    border-left: 1px solid rgba(190, 176, 162, 0.5);
 }
 
 .cardDistance {
