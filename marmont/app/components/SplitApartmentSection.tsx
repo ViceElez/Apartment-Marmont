@@ -7,48 +7,39 @@ import styles from "./styles/SplitApratment.module.css";
 export default function SplitApartmentSection() {
     const ref = useRef(null);
 
-    const { scrollYProgress: bgScrollProgress } = useScroll({
+    const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ["start start", "end start"],
-    });
-
-    const { scrollYProgress: textScrollProgress } = useScroll({
-        target: ref,
+        // "start end" means animation starts when top of section hits bottom of screen
+        // "end start" means animation ends when bottom of section hits top of screen
         offset: ["start end", "end start"],
     });
 
-    const backgroundY = useTransform(bgScrollProgress, [0, 1], ["0%", "100%"]);
+    // Subtler Parallax: Only move 20% instead of 100% to keep it grounded
+    const backgroundY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
-    const rawTextY = useTransform(textScrollProgress, [0, 1], ["0vh", "70vh"]);
-    const textY = useSpring(rawTextY, { stiffness: 200, damping: 30 });
+    // Fades the section in as it scrolls into view
+    const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
+    // Scale effect to make it feel like the camera is moving in
+    const scale = useTransform(scrollYProgress, [0, 0.4], [1.1, 1]);
 
     return (
-        <div ref={ref} className={styles.container}>
+        <motion.div
+            ref={ref}
+            className={styles.container}
+            style={{ opacity }} // Section fades in smoothly
+        >
             <motion.div
                 className={styles.backgroundLayer}
                 style={{
                     backgroundImage: `url(/images/split/SplitCity.webp)`,
-                    backgroundPosition: "bottom",
+                    backgroundPosition: "center",
                     backgroundSize: "cover",
                     y: backgroundY,
+                    scale: scale, // Zooms out slightly as you scroll down
                 }}
             />
-
-            <motion.h1
-                style={{ y: textY }}
-                className={styles.title}
-            >
-                Apartment Marmont
-            </motion.h1>
-
-            <div
-                className={styles.foregroundLayer}
-                style={{
-                    backgroundImage: `url(/images/split/SplitBuildings.PNG)`,
-                    backgroundPosition: "bottom",
-                    backgroundSize: "cover",
-                }}
-            />
-        </div>
+            {/* ... rest of your code */}
+        </motion.div>
     );
 }
