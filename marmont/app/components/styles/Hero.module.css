@@ -222,6 +222,77 @@
 .navLink:hover { color: var(--color-white); }
 .navLink:hover::after { width: 100%; }
 
+.navDropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navDropdownButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.navDropdownButton:focus-visible {
+    outline: 1px solid var(--color-white);
+    outline-offset: 4px;
+}
+
+.navCaret {
+    font-size: 0.7em;
+    transition: transform 0.3s var(--easing);
+}
+
+.navCaretOpen {
+    transform: rotate(180deg);
+}
+
+.navMenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -6px);
+    min-width: 190px;
+    background: rgba(8, 8, 8, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s var(--easing), transform 0.25s var(--easing);
+    z-index: 25;
+}
+
+.navMenuOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.navMenuItem {
+    display: block;
+    padding: 0.55rem 0.95rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(0.65rem, 0.85vw, 0.78rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.3s var(--easing), color 0.3s var(--easing);
+}
+
+.navMenuItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-white);
+}
+
 /* ─── TITLE ─── */
 .titleCol {
     grid-column: 1 / 5;
@@ -521,6 +592,11 @@
     .navCol   { grid-column: 2; grid-row: 1; }
     .nav      { gap: 1rem; }
     .navLink  { font-size: 0.65rem; }
+
+    .navMenu {
+        left: 50%;
+        right: auto;
+    }
 
     .titleCol {
         grid-column: 1 / 3;

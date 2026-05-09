@@ -6,7 +6,7 @@ export default function SplitHeroSection() {
         <section className={styles.hero}>
             <div className={styles.imageWrap}>
                 <Image
-                    src="/images/split/SplitBuildings.PNG"
+                    src="/images/split/SplitCity.webp"
                     alt="Split apartment exterior"
                     fill
                     className={styles.image}
