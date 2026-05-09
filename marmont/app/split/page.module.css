@@ -1,145 +1,32 @@
+/* The page shell must have zero top padding so the hero
+   can bleed to the very top of the viewport.
+   Any global navbar offset should be handled via a CSS variable
+   rather than padding here. */
 .page {
-    min-height: 100vh;
-    position: relative;
-    background: radial-gradient(
-            circle at top,
-            #f5f1ea 0%,
-            #ece6dc 55%,
-            #e2d9cd 100%
-    );
-    color: #2b2420;
-    padding: 80px 40px;
-    overflow: hidden;
+    --page-padding-top: 0px;
+    min-height: 100dvh;
+    background-color: #f5f1ea; /* matches the site's cream */
 }
 
-/* ---------------- LAYER WRAPPER ---------------- */
-.background {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* ---------------- NOISE ---------------- */
-.noise {
-    position: absolute;
-    inset: 0;
-    background-image: url("https://www.transparenttextures.com/patterns/noise.png");
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-}
-
-/* ---------------- FLOATING BLOBS ---------------- */
-.blob {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.2;
-    animation: float 14s ease-in-out infinite;
-}
-
-.blob1 {
-    background: #3d9b9b;
-    top: 10%;
-    left: -200px;
-}
-
-.blob2 {
-    background: #7dd3c7;
-    bottom: -200px;
-    right: -200px;
-    animation-delay: -6s;
-}
-
-@keyframes float {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(40px, -30px); }
-    100% { transform: translate(0, 0); }
-}
-
-/* ---------------- INTRO ---------------- */
-.intro {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.introTitleSmall {
-    font-size: 12px;
-    letter-spacing: 5px;
-    opacity: 0.6;
-    text-transform: uppercase;
-}
-
-.introTitle {
-    font-size: 64px;
-    margin: 0;
-    font-weight: 600;
-    background: linear-gradient(90deg, #3d9b9b, #7dd3c7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.introText {
-    margin-top: 10px;
-    opacity: 0.7;
-}
-
-/* ---------------- HERO ---------------- */
-.hero {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.heroTitle {
-    font-size: 48px;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: 1px;
-    background: linear-gradient(90deg, #3d9b9b, #7dd3c7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.heroText {
-    margin-top: 10px;
-    font-size: 15px;
-    opacity: 0.7;
-}
-
-/* ---------------- SECTION TITLE (FIXED) ---------------- */
-.sectionTitle {
-    margin: 50px 0 15px;
-    font-size: 18px;
-    opacity: 0.8;
-    letter-spacing: 1px;
-    position: relative;
-    z-index: 2;
-}
-
-/* ---------------- CONTENT LAYER ---------------- */
+/* Content wrapper adds horizontal padding and spacing
+   for everything BELOW the hero */
 .content {
-    position: relative;
-    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2.5rem);
 }
 
-/* ---------------- RESPONSIVE ---------------- */
-@media (max-width: 768px) {
-    .page {
-        padding: 60px 20px;
-    }
+.sectionTitle {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    font-weight: 500;
+    color: #2b2420;
+    margin: 60px 0 20px;
+    letter-spacing: -0.01em;
+}
 
-    .introTitle {
-        font-size: 42px;
-    }
-
-    .heroTitle {
-        font-size: 32px;
+@media (max-width: 600px) {
+    .sectionTitle {
+        margin: 40px 0 14px;
     }
 }

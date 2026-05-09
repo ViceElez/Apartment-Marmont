@@ -15,12 +15,6 @@ import styles from "./page.module.css";
 export default function SplitPage() {
     return (
         <main className={styles.page}>
-            <div className={styles.background}>
-                <div className={`${styles.blob} ${styles.blob1}`} />
-                <div className={`${styles.blob} ${styles.blob2}`} />
-                <div className={styles.noise} />
-            </div>
-
             <div className={styles.content}>
                 <SplitHeroSection />
                 <SplitAboutSection />

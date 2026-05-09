@@ -7,7 +7,7 @@ export default function SplitHeroSection() {
             <div className={styles.imageWrap}>
                 <Image
                     src="/images/split/SplitCity.webp"
-                    alt="Split apartment exterior"
+                    alt="Split city waterfront with Diocletian's Palace and Adriatic sea"
                     fill
                     className={styles.image}
                     priority

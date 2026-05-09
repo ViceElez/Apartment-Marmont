@@ -1,58 +1,75 @@
 .hero {
+    /* escape any padding on the parent wrapper */
     position: relative;
-    margin: 0 0 70px;
     width: 100vw;
+    height: 100dvh;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    border-radius: 0;
+
+    /* pull the hero flush to the very top of the page,
+       negating whatever padding the page/content wrapper adds */
+    margin-top: calc(-1 * var(--page-padding-top, 0px));
+
+    margin-bottom: 70px;
     overflow: hidden;
-    box-shadow: none;
 }
 
 .imageWrap {
     position: relative;
     width: 100%;
-    min-height: 520px;
+    height: 100%;
 }
 
 .image {
     object-fit: cover;
+    object-position: center 60%;
 }
 
 .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(245, 241, 234, 0.6), rgba(245, 241, 234, 0.2) 40%, rgba(0, 0, 0, 0.05));
+    /* left side fades to the page cream so text is always readable;
+       right side stays near-transparent to show the photo */
+    background: linear-gradient(
+            105deg,
+            rgba(245, 241, 234, 0.72) 0%,
+            rgba(245, 241, 234, 0.35) 38%,
+            rgba(0, 0, 0, 0.04)       70%
+    );
 }
 
 .text {
     position: absolute;
-    top: 40px;
+    top: 50%;
     left: 40px;
-    max-width: 520px;
+    transform: translateY(-50%);
+    max-width: 540px;
     color: #2b2420;
 }
 
 .kicker {
     text-transform: uppercase;
     letter-spacing: 4px;
-    font-size: 12px;
-    opacity: 0.7;
-    margin-bottom: 10px;
+    font-size: 11px;
+    opacity: 0.65;
+    margin: 0 0 12px;
+    font-family: inherit;
 }
 
 .title {
-    font-size: 56px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
     font-weight: 500;
-    margin: 0 0 14px;
+    line-height: 1.1;
+    margin: 0 0 16px;
     font-family: "Georgia", "Times New Roman", serif;
 }
 
 .description {
     font-size: 15px;
-    line-height: 1.6;
-    opacity: 0.8;
-    margin-bottom: 18px;
+    line-height: 1.65;
+    opacity: 0.78;
+    margin: 0 0 22px;
+    max-width: 420px;
 }
 
 .cta {
@@ -62,48 +79,45 @@
     background: #c8a46a;
     color: #2b2420;
     border-radius: 999px;
-    padding: 12px 26px;
+    padding: 13px 28px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 11px;
+    font-weight: 500;
     text-decoration: none;
+    transition: background 0.25s ease;
 }
 
 .cta:hover {
     background: #b9935c;
 }
 
+/* ─── TABLET ─── */
 @media (max-width: 900px) {
     .text {
         left: 28px;
         right: 28px;
-    }
-
-    .title {
-        font-size: 44px;
+        max-width: 100%;
     }
 }
 
+/* ─── MOBILE ─── */
 @media (max-width: 600px) {
     .hero {
-        border-radius: 0;
-    }
-
-    .imageWrap {
-        min-height: 360px;
+        height: 100dvh;
+        margin-bottom: 48px;
     }
 
     .text {
-        top: 28px;
+        top: auto;
+        bottom: 48px;
+        transform: none;
         left: 24px;
         right: 24px;
     }
 
-    .title {
-        font-size: 34px;
-    }
-
     .description {
-        margin-bottom: 16px;
+        font-size: 14px;
+        margin-bottom: 18px;
     }
 }
