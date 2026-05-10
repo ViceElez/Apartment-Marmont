@@ -1,0 +1,174 @@
+.section {
+    position: relative;
+    background-color: #f5f1ea;
+    min-height: 100vh;
+    padding: 80px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* ── Watermark ── */
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-size: clamp(72px, 11vw, 160px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.0;
+    color: rgba(43, 36, 32, 0.13);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* ── Left column ── */
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 40px;
+}
+
+/* ── Stars ── */
+.stars {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.star {
+    font-size: 18px;
+    color: #c4a382;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(196, 163, 130, 0.35);
+    border-radius: 50%;
+    line-height: 1;
+}
+
+/* ── Stats ── */
+.stats {
+    display: flex;
+    gap: 48px;
+    align-items: flex-end;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.statValue {
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    color: #2b2420;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.statLabel {
+    font-size: 12px;
+    color: #7c6a5d;
+    letter-spacing: 0.08em;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+}
+
+/* ── Right column: card stack stage ── */
+.right {
+    position: relative;
+    z-index: 1;
+    /* The CardSwap component positions itself absolute bottom-right
+       within this relative container */
+    min-height: 480px;
+}
+
+/* ── Card inner layout (content inside each Card) ── */
+.cardInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.cardIndex {
+    display: block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.12em;
+    color: #8a7c70;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.cardQuote {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #3b332d;
+    margin: 0 0 20px;
+    font-weight: 400;
+    flex: 1;
+}
+
+.cardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.cardAuthor {
+    font-size: 13px;
+    color: #7c6a5d;
+    font-style: italic;
+    letter-spacing: 0.02em;
+}
+
+.cardLocation {
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+    color: #8a7c70;
+    text-transform: uppercase;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .section {
+        padding: 48px 24px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 64px;
+    }
+
+    .watermark {
+        font-size: 56px;
+    }
+
+    .left {
+        gap: 48px;
+        padding-bottom: 0;
+    }
+
+    .right {
+        min-height: 500px;
+    }
+
+    .stats {
+        gap: 32px;
+    }
+}
