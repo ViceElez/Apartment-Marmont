@@ -1,4 +1,4 @@
-import HorizontalScroll from "@/app/components/HorizontalScroll";
+import Carousel from "@/app/components/Carousel";
 import { beaches } from "@/app/data/split/beaches";
 import { restaurants } from "@/app/data/split/restaurants";
 import { nightlife } from "@/app/data/split/nightlife";
@@ -12,6 +12,14 @@ import SplitHeroSection from "@/app/split/components/SplitHeroSection";
 
 import styles from "./page.module.css";
 
+const buildCarouselItems = (items: { id: string; name: string; type: string; address: string; distanceFromApartment?: string; hours?: string; icon?: string; }[]) =>
+    items.map((item, index) => ({
+        id: index,
+        title: item.name,
+        description: [item.type, item.address, item.distanceFromApartment, item.hours].filter(Boolean).join(" | "),
+        icon: item.icon ?? ""
+    }));
+
 export default function SplitPage() {
     return (
         <main className={styles.page}>
@@ -20,26 +28,56 @@ export default function SplitPage() {
                 <SplitAboutSection />
                 <SplitApartmentDetails />
 
-                <h2 className={styles.sectionTitle}>Amenities</h2>
-                <HorizontalScroll items={amenities} />
+                <div className={styles.carouselGrid}>
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Amenities</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(amenities)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
 
-                <h2 className={styles.sectionTitle}>Activities</h2>
-                <HorizontalScroll items={activities} />
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Activities</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(activities)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
 
-                <h2 className={styles.sectionTitle}>Shopping</h2>
-                <HorizontalScroll items={shopping} />
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Shopping</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(shopping)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
 
-                <h2 className={styles.sectionTitle}>Restaurants</h2>
-                <HorizontalScroll items={restaurants} />
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Restaurants</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(restaurants)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
 
-                <h2 className={styles.sectionTitle}>Nightlife</h2>
-                <HorizontalScroll items={nightlife} />
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Nightlife</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(nightlife)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
 
-                <h2 className={styles.sectionTitle}>Top Sights</h2>
-                <HorizontalScroll items={topSights} />
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Top Sights</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(topSights)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
 
-                <h2 className={styles.sectionTitle}>Beaches</h2>
-                <HorizontalScroll items={beaches} />
+                    <section className={styles.carouselSection}>
+                        <h2 className={styles.sectionTitle}>Beaches</h2>
+                        <div className={styles.carouselWrapper}>
+                            <Carousel items={buildCarouselItems(beaches)} autoplay autoplayDelay={3200} pauseOnHover loop={true} />
+                        </div>
+                    </section>
+                </div>
             </div>
         </main>
     );
