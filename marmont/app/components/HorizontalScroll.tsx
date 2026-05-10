@@ -53,24 +53,38 @@ export default function HorizontalScroll({ items }: { items: SplitItem[] }) {
         return () => cancelAnimationFrame(raf);
     }, []);
 
-    const onDown = (e: React.MouseEvent) => {
+    const onDown = (clientX: number) => {
         dragging.current = true;
-        startX.current = e.clientX;
+        startX.current = clientX;
     };
 
-    const onMove = (e: React.MouseEvent) => {
+    const onMove = (clientX: number) => {
         if (!dragging.current || !trackRef.current) return;
 
-        const delta = e.clientX - startX.current;
+        const delta = clientX - startX.current;
 
         position.current += delta * 1.1;
         trackRef.current.style.transform = `translateX(${position.current}px)`;
 
-        startX.current = e.clientX;
+        startX.current = clientX;
     };
 
     const onUp = () => {
         dragging.current = false;
+    };
+
+    const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        onDown(e.clientX);
+    };
+
+    const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+        if (!dragging.current) return;
+        onMove(e.clientX);
+    };
+
+    const onPointerUp = () => {
+        onUp();
     };
 
     return (
@@ -80,10 +94,11 @@ export default function HorizontalScroll({ items }: { items: SplitItem[] }) {
                 <div
                     ref={trackRef}
                     className={styles.track}
-                    onMouseDown={onDown}
-                    onMouseMove={onMove}
-                    onMouseUp={onUp}
-                    onMouseLeave={onUp}
+                    onPointerDown={onPointerDown}
+                    onPointerMove={onPointerMove}
+                    onPointerUp={onPointerUp}
+                    onPointerCancel={onPointerUp}
+                    onPointerLeave={onPointerUp}
                 >
                     {doubled.map((item, i) => (
                         <Card key={`${item.id}-${i}`} item={item} />

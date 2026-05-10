@@ -1,15 +1,9 @@
-/* The page shell must have zero top padding so the hero
-   can bleed to the very top of the viewport.
-   Any global navbar offset should be handled via a CSS variable
-   rather than padding here. */
 .page {
     --page-padding-top: 0px;
     min-height: 100dvh;
-    background-color: #f5f1ea; /* matches the site's cream */
+    background-color: #f5f1ea;
 }
 
-/* Content wrapper adds horizontal padding and spacing
-   for everything BELOW the hero */
 .content {
     max-width: 1200px;
     margin: 0 auto;

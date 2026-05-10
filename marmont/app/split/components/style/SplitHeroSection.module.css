@@ -1,15 +1,9 @@
 .hero {
-    /* escape any padding on the parent wrapper */
     position: relative;
     width: 100vw;
     height: 100dvh;
     margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-
-    /* pull the hero flush to the very top of the page,
-       negating whatever padding the page/content wrapper adds */
     margin-top: calc(-1 * var(--page-padding-top, 0px));
-
     margin-bottom: 70px;
     overflow: hidden;
 }
@@ -109,9 +103,9 @@
     }
 
     .text {
-        top: auto;
-        bottom: 48px;
-        transform: none;
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
         left: 24px;
         right: 24px;
     }
