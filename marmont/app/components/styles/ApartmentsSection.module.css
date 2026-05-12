@@ -1,0 +1,212 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #0e0d0b;
+    scroll-behavior: smooth;
+}
+
+/* ─── LEFT / DESKTOP PANEL ───────────────────────────── */
+
+.stickyPanel {
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+
+    width: 400px;
+    min-width: 400px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 3.5rem 2.75rem;
+    background: #0e0d0b;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.accentBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.panelContent {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.panelFade {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+/* ─── TYPOGRAPHY (unchanged) ─────────────────────────── */
+
+.eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 1rem;
+}
+
+.aptTitle {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.2rem, 3.2vw, 3rem);
+    color: #f5f2ee;
+    margin-bottom: 0.75rem;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1.25rem;
+}
+
+.locationDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+.tagRow {
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+
+.desc {
+    max-width: 32ch;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+}
+
+.priceLine {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.75rem;
+}
+
+.price {
+    font-size: 2.2rem;
+    color: #f5f2ee;
+}
+
+.per {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.cta {
+    padding: 0.875rem 1.75rem;
+    border: none;
+    color: #0e0d0b;
+    cursor: pointer;
+}
+
+/* ─── PROGRESS ───────────────────────────────────────── */
+
+.progress {
+    display: flex;
+    gap: 8px;
+    margin-top: 2rem;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dotActive {
+    transform: scale(1.4);
+}
+
+/* ─── RIGHT COLUMN ───────────────────────────────────── */
+
+.scrollColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.apartmentBlock {
+    min-height: 100vh;
+}
+
+.roomSection {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/* ─── MOBILE MODE (IMPORTANT PART) ───────────────────── */
+
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* 🔥 Sticky TOP INFO BAR */
+    .stickyPanel {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+
+        padding: 1rem 1.25rem;
+        background: rgba(14, 13, 11, 0.95);
+        backdrop-filter: blur(12px);
+
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        z-index: 50;
+    }
+
+    .panelContent {
+        padding-top: 0.25rem;
+    }
+
+    .desc {
+        max-width: 100%;
+    }
+
+    .scrollColumn {
+        width: 100%;
+    }
+
+    .roomSection {
+        height: 70vh;
+        min-height: 320px;
+    }
+
+    .aptTitle {
+        font-size: 1.6rem;
+    }
+}
