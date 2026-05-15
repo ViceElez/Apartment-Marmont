@@ -1,3 +1,7 @@
+.outerWrapper {
+    position: relative;
+}
+
 .wrapper {
     display: flex;
     align-items: flex-start;
@@ -48,7 +52,7 @@
     transform: translateY(6px);
 }
 
-/* ─── TYPOGRAPHY (unchanged) ─────────────────────────── */
+/* ─── TYPOGRAPHY ─────────────────────────────────────── */
 
 .eyebrow {
     font-family: "DM Mono", monospace;
@@ -162,39 +166,88 @@
     overflow: hidden;
 }
 
-/* ─── MOBILE MODE (IMPORTANT PART) ───────────────────── */
+/* ─── DIVIDER STYLING ───────────────────────────────── */
+
+.dividerBar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2.5rem;
+    background: #0e0d0b;
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    opacity: 0.7;
+}
+
+.dividerLabel {
+    font-family: "DM Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ─── MOBILE MODE ─────────────────────────────────────── */
 
 @media (max-width: 768px) {
     .wrapper {
         flex-direction: column;
         height: auto;
         overflow: visible;
+        overflow-x: hidden;
     }
 
-    /* 🔥 Sticky TOP INFO BAR */
     .stickyPanel {
-        position: sticky;
-        top: 0;
+        position: relative;
+        top: auto;
         width: 100%;
         min-width: 100%;
         height: auto;
-
-        padding: 1rem 1.25rem;
-        background: rgba(14, 13, 11, 0.95);
+        padding: 0.75rem 1rem;
+        background: rgba(14, 13, 11, 0.97);
         backdrop-filter: blur(12px);
-
+        -webkit-backdrop-filter: blur(12px);
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
+        justify-content: flex-start;
         z-index: 50;
+    }
+
+    .mobileStickyActive {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        min-width: 100% !important;
     }
 
     .panelContent {
         padding-top: 0.25rem;
     }
 
-    .desc {
-        max-width: 100%;
+    .aptTitle {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .eyebrow,
+    .location,
+    .tagRow,
+    .desc,
+    .priceLine,
+    .progress,
+    .cta {
+        display: none;
     }
 
     .scrollColumn {
@@ -206,7 +259,9 @@
         min-height: 320px;
     }
 
-    .aptTitle {
-        font-size: 1.6rem;
+    .dividerLabel {
+        font-size: 0.52rem;
+        letter-spacing: 0.2em;
+        padding: 0.35rem 0.7rem;
     }
 }
