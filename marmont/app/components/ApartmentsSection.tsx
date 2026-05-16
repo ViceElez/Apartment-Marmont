@@ -9,6 +9,7 @@ export default function ApartmentsSection() {
     const [activeId, setActiveId] = useState(apartments[0].id);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [isMobileSticky, setIsMobileSticky] = useState(false);
+    const [panelHeight, setPanelHeight] = useState(0);
 
     const prevIdRef = useRef(apartments[0].id);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -72,21 +73,23 @@ export default function ApartmentsSection() {
         const handleScroll = () => {
             if (!outerRef.current || !panelRef.current) return;
 
-            const panelHeight = panelRef.current.offsetHeight;
+            const ph = panelRef.current.offsetHeight;
+            setPanelHeight(ph);
+
             const outerRect = outerRef.current.getBoundingClientRect();
 
             // sticky logic
             const shouldStick =
-                outerRect.top <= 0 && outerRect.bottom > panelHeight;
+                outerRect.top <= 0 && outerRect.bottom > ph;
             setIsMobileSticky(shouldStick);
 
-            // active section logic — find which section's top is closest to panelHeight
+            // active section logic
             let closestId: string | null = null;
             let closestDistance = Infinity;
 
             sectionRefs.current.forEach((el, id) => {
                 const rect = el.getBoundingClientRect();
-                const distance = Math.abs(rect.top - panelHeight);
+                const distance = Math.abs(rect.top - ph);
                 if (distance < closestDistance) {
                     closestDistance = distance;
                     closestId = id;
@@ -115,6 +118,12 @@ export default function ApartmentsSection() {
     return (
         <div ref={outerRef} className={styles.outerWrapper}>
             <div ref={wrapperRef} className={styles.wrapper}>
+
+                {/* SPACER — holds space when panel becomes fixed on mobile */}
+                {isMobileSticky && (
+                    <div style={{ height: panelHeight, width: "100%", flexShrink: 0 }} />
+                )}
+
                 {/* LEFT PANEL */}
                 <aside
                     ref={panelRef}
