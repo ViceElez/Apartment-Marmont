@@ -78,6 +78,106 @@ export default function SplitPage() {
                         </div>
                     </section>
                 </div>
+
+                <section className={styles.directionsSection}>
+                    <div className={styles.directionsHeader}>
+                        <h2 className={styles.sectionTitle}>Directions</h2>
+                        <p className={styles.directionsIntro}>
+                            Step-by-step guidance to Apartment Marmont from the main arrival points.
+                        </p>
+                    </div>
+
+                    <div className={styles.directionsAccordion}>
+                        <details className={styles.directionsItem} open>
+                            <summary className={styles.directionsSummary}>Split Airport</summary>
+                            <div className={styles.directionsBody}>
+                                <div className={styles.directionsText}>
+                                    <p>
+                                        After landing at Split Airport (SPU), follow the signs to the main exit. You will
+                                        see the airport bus stop straight ahead. Take the official airport shuttle bus
+                                        to Split city center (the final stop is by the ferry port).
+                                    </p>
+                                    <p>
+                                        From the bus stop, walk along the promenade toward Riva. Keep the sea on your
+                                        right, pass the palm-lined walkway, and continue for about 10 minutes until you
+                                        reach Trumbiceva obala 15. The building sits just off the waterfront.
+                                    </p>
+                                    <p>
+                                        If you prefer, book a taxi or private transfer; travel time is typically
+                                        35–45 minutes depending on traffic.
+                                    </p>
+                                </div>
+                                <div className={styles.directionsImages}>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitCity.webp" alt="Split Airport arrival exit" />
+                                        <span className={styles.directionsCaption}>Exit the terminal to the shuttle stop.</span>
+                                    </div>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitBuildings.PNG" alt="Split promenade toward Riva" />
+                                        <span className={styles.directionsCaption}>Walk the Riva promenade toward the old town.</span>
+                                    </div>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitCity.webp" alt="Apartment Marmont nearby waterfront" />
+                                        <span className={styles.directionsCaption}>Apartment Marmont sits just off the waterfront.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details className={styles.directionsItem}>
+                            <summary className={styles.directionsSummary}>Taxi stop</summary>
+                            <div className={styles.directionsBody}>
+                                <div className={styles.directionsText}>
+                                    <p>
+                                        The main taxi stand is beside the ferry terminal. Tell the driver “Riva,
+                                        Trumbiceva obala 15” or “Apartment Marmont.” It is a short ride along the
+                                        waterfront, usually under 10 minutes.
+                                    </p>
+                                    <p>
+                                        If you are arriving with luggage, ask to be dropped near the promenade entrance
+                                        so you can easily roll your bags to the building.
+                                    </p>
+                                </div>
+                                <div className={styles.directionsImages}>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitCity.webp" alt="Split taxi rank near the port" />
+                                        <span className={styles.directionsCaption}>Find the taxi stand by the port exit.</span>
+                                    </div>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitBuildings.PNG" alt="Taxi route along the waterfront" />
+                                        <span className={styles.directionsCaption}>A short ride along the waterfront.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details className={styles.directionsItem}>
+                            <summary className={styles.directionsSummary}>Ferry port</summary>
+                            <div className={styles.directionsBody}>
+                                <div className={styles.directionsText}>
+                                    <p>
+                                        Exit the ferry terminal and head toward the promenade. Walk west along Riva with
+                                        the sea on your right. After 10–12 minutes, you will reach Trumbiceva obala 15.
+                                    </p>
+                                    <p>
+                                        For a quicker arrival, taxis are available directly outside the terminal and
+                                        will get you there in about 5 minutes.
+                                    </p>
+                                </div>
+                                <div className={styles.directionsImages}>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitCity.webp" alt="Split ferry terminal exit" />
+                                        <span className={styles.directionsCaption}>Exit the ferry terminal to the promenade.</span>
+                                    </div>
+                                    <div className={styles.directionsImageCard}>
+                                        <img src="/images/split/SplitBuildings.PNG" alt="Riva promenade toward apartment" />
+                                        <span className={styles.directionsCaption}>Follow Riva to Trumbiceva obala 15.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </section>
             </div>
         </main>
     );

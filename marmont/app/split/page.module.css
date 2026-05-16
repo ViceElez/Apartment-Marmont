@@ -7,7 +7,7 @@
 .content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 2.5rem);
+    padding: 0 clamp(1rem, 4vw, 2.5rem) clamp(2.5rem, 6vw, 4rem);
 }
 
 .sectionTitle {
@@ -78,5 +78,142 @@
     .carouselWrapper {
         height: 210px;
         max-width: 420px;
+    }
+}
+
+.travelCard {
+    background: #f7f3ee;
+    border: 1px solid rgba(43, 36, 32, 0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.directionsSection {
+    margin: 60px 0 80px;
+    background: #f0ebe3;
+    border: 1px solid rgba(43, 36, 32, 0.08);
+    border-radius: 20px;
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+    display: grid;
+    gap: 24px;
+    box-shadow: 0 20px 45px rgba(27, 20, 16, 0.08);
+}
+
+.directionsHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.directionsIntro {
+    max-width: 75ch;
+    margin: 0;
+    color: rgba(43, 36, 32, 0.7);
+    line-height: 1.6;
+}
+
+.directionsAccordion {
+    display: grid;
+    gap: 16px;
+}
+
+.directionsItem {
+    background: #f7f3ee;
+    border: 1px solid rgba(43, 36, 32, 0.08);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.directionsItem[open] .directionsSummary {
+    border-bottom: 1px solid rgba(43, 36, 32, 0.08);
+}
+
+.directionsSummary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.1rem;
+    color: #2b2420;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.directionsSummary::-webkit-details-marker {
+    display: none;
+}
+
+.directionsSummary::after {
+    content: "+";
+    font-size: 1.2rem;
+    color: rgba(43, 36, 32, 0.6);
+}
+
+.directionsItem[open] .directionsSummary::after {
+    content: "−";
+}
+
+.directionsBody {
+    display: grid;
+    gap: 20px;
+    padding: 20px 22px 24px;
+}
+
+.directionsText {
+    display: grid;
+    gap: 12px;
+    color: rgba(43, 36, 32, 0.75);
+    line-height: 1.7;
+}
+
+.directionsImages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.directionsImageCard {
+    background: #f5f1ea;
+    border: 1px solid rgba(43, 36, 32, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    display: grid;
+}
+
+.directionsImageCard img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.directionsCaption {
+    font-size: 0.85rem;
+    color: rgba(43, 36, 32, 0.65);
+    padding: 10px 12px 12px;
+}
+
+@media (max-width: 768px) {
+    .directionsSection {
+        margin: 40px 0 60px;
+    }
+
+    .directionsSummary {
+        font-size: 1rem;
+        padding: 16px 18px;
+    }
+
+    .directionsBody {
+        padding: 18px;
+    }
+
+    .directionsImageCard img {
+        height: 140px;
     }
 }
