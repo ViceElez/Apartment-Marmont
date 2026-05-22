@@ -23,12 +23,12 @@ export const apartments: Apartment[] = [
     {
         id: "apt-1",
         label: "No. 01",
-        title: "The Meridian",
-        location: "Dubrovnik Old Town, Croatia",
+        title: "Apartment Marmont",
+        location: "Split, Croatia",
         price: "€320",
         per: "/ night",
         tag: "Sea View Suite",
-        desc: "Perched above the Adriatic, whitewashed walls meet hand-laid stone floors. A place where mornings begin with salt air and silence.",
+        desc: "Set in the heart of Split, steps from the waterfront. A calm, light-filled base for morning walks, old-town evenings, and easy beach days.",
         cta: "Reserve Suite",
         accent: "#C9A96E",
         rooms: [
@@ -40,12 +40,12 @@ export const apartments: Apartment[] = [
     {
         id: "apt-2",
         label: "No. 02",
-        title: "The Vantage",
-        location: "Hvar Island, Croatia",
+        title: "Apartment Solta",
+        location: "Stomorska, Solta, Croatia",
         price: "€480",
         per: "/ night",
         tag: "Clifftop Residence",
-        desc: "Raw concrete softened by linen, leather, and lavender. A clifftop retreat designed for those who move slowly through the world.",
+        desc: "Perched above Stomorska bay, with a slower island rhythm. A quiet retreat for sea swims, sunset dinners, and long, unhurried afternoons.",
         cta: "Reserve Suite",
         accent: "#8BAAB5",
         rooms: [

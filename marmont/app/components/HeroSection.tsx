@@ -11,32 +11,31 @@ const APARTMENTS = [
     {
         id: "marmont",
         title: "Apartment\nMarmont",
-        image: "/images/split/livingRoom1.webp",
+        image: "/images/split/general/heroImage.jpg",
         imageAlt: "Apartment Marmont – modern mountain home interior",
         description:
-            "Canada-based studio Bourgeois/Lechasseur Architects has designed an exciting new modern mountain home.",
-        bookUrl: "https://www.youtube.com",
+            "Nestled in the heart of Split, where contemporary design meets historic charm in a vibrant urban setting.",
+        bookUrl: "https://hr.airbnb.com/rooms/10186174?source_impression_id=p3_1779463369_P3oAHkNFOHK_HY9O",
         reviews: {
             overall: "4.9",
             platforms: [
-                { name: "Airbnb",      stars: 5, score: "4.97", count: 128 },
-                { name: "Booking.com", stars: 5, score: "9.4",  count: 84  },
+                { name: "Airbnb", stars: 5, score: "4.9", count: 142 },
+                { name: "Booking.com", stars: 5, score: "9.4",  count: 43  },
             ],
         },
     },
     {
         id: "solta",
         title: "Apartment\nŠolta",
-        image: "/images/split/livingRoom2.webp",
+        image: "/images/solta/general/heroImage.webp",
         imageAlt: "Apartment Šolta – sunlit Dalmatian stone villa",
         description:
             "Perched above the shimmering Adriatic with uninterrupted sea views and timeless stone architecture.",
-        bookUrl: "https://www.instagram.com",
+        bookUrl: "https://www.airbnb.com/rooms/11817985?search_mode=regular_search&adults=1&check_in=2026-06-01&check_out=2026-06-06&children=0&infants=0&pets=0&photo_id=1746179446&source_impression_id=p3_1779463646_P32iXIwD-WkG0io1&previous_page_section_name=1000&federated_search_id=4f3f34a8-1c6a-4ea1-89e0-0fa79fb03fc8",
         reviews: {
             overall: "4.8",
             platforms: [
-                { name: "Airbnb",      stars: 5, score: "4.93", count: 97 },
-                { name: "Booking.com", stars: 5, score: "9.6",  count: 63 },
+                { name: "Airbnb",      stars: 5, score: "4.91", count: 97 },
             ],
         },
     },
