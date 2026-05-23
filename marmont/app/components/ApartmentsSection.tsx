@@ -164,12 +164,15 @@ export default function ApartmentsSection() {
                             <span className={styles.price}>{current.price}</span>
                             <span className={styles.per}>{current.per}</span>
                         </div>
-                        <button
+                        <a
                             className={styles.cta}
                             style={{ background: current.accent }}
+                            href={current.bookingUrl}
+                            target="_blank"
+                            rel="noreferrer"
                         >
                             {current.cta}
-                        </button>
+                        </a>
                     </div>
 
                     <div className={styles.progress}>

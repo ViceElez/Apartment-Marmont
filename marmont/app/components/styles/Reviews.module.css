@@ -1,6 +1,12 @@
 .section {
     position: relative;
-    background-color: #f5f1ea;
+    background: linear-gradient(
+            to bottom,
+            #0e0d0b 0%,
+            #161310 30%,
+            #1e1a15 60%,
+            #241f18 100%
+    );
     min-height: 100vh;
     padding: 80px 64px;
     display: grid;
@@ -8,6 +14,23 @@
     grid-template-rows: 1fr;
     overflow: hidden;
     font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(22, 19, 16, 0.6) 60%,
+            #161310 100%
+    );
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* ── Watermark ── */
@@ -20,7 +43,7 @@
     font-style: italic;
     font-weight: 400;
     line-height: 1.0;
-    color: rgba(43, 36, 32, 0.13);
+    color: rgba(245, 242, 238, 0.04);
     white-space: nowrap;
     pointer-events: none;
     user-select: none;
@@ -54,7 +77,7 @@
     justify-content: center;
     width: 30px;
     height: 30px;
-    border: 1px solid rgba(196, 163, 130, 0.35);
+    border: 1px solid rgba(196, 163, 130, 0.2);
     border-radius: 50%;
     line-height: 1;
 }
@@ -75,29 +98,27 @@
 .statValue {
     font-size: clamp(36px, 4vw, 54px);
     font-weight: 300;
-    color: #2b2420;
+    color: #f5f2ee;
     line-height: 1;
     letter-spacing: -0.03em;
 }
 
 .statLabel {
     font-size: 12px;
-    color: #7c6a5d;
+    color: rgba(255, 255, 255, 0.35);
     letter-spacing: 0.08em;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
 }
 
-/* ── Right column: card stack stage ── */
+/* ── Right column ── */
 .right {
     position: relative;
     z-index: 1;
-    /* The CardSwap component positions itself absolute bottom-right
-       within this relative container */
     min-height: 480px;
 }
 
-/* ── Card inner layout (content inside each Card) ── */
+/* ── Card inner layout ── */
 .cardInner {
     display: flex;
     flex-direction: column;
@@ -110,7 +131,7 @@
     font-size: 11px;
     font-family: 'Courier New', monospace;
     letter-spacing: 0.12em;
-    color: #8a7c70;
+    color: rgba(196, 163, 130, 0.6);
     margin-bottom: 16px;
     text-transform: uppercase;
 }
@@ -118,7 +139,7 @@
 .cardQuote {
     font-size: 13px;
     line-height: 1.8;
-    color: #3b332d;
+    color: rgba(245, 242, 238, 0.65);
     margin: 0 0 20px;
     font-weight: 400;
     flex: 1;
@@ -133,17 +154,9 @@
 
 .cardAuthor {
     font-size: 13px;
-    color: #7c6a5d;
+    color: rgba(255, 255, 255, 0.35);
     font-style: italic;
     letter-spacing: 0.02em;
-}
-
-.cardLocation {
-    font-size: 11px;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.1em;
-    color: #8a7c70;
-    text-transform: uppercase;
 }
 
 /* ── Responsive ── */
