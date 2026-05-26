@@ -24,9 +24,9 @@
     inset: 0;
     background: linear-gradient(
             105deg,
-            rgba(245, 241, 234, 0.78) 0%,
-            rgba(245, 241, 234, 0.40) 40%,
-            rgba(245, 241, 234, 0.05) 68%
+            rgba(22, 18, 15, 0.62) 0%,
+            rgba(22, 18, 15, 0.45) 40%,
+            rgba(22, 18, 15, 0.22) 68%
     );
 }
 
@@ -86,16 +86,18 @@
     padding: 0;
     background: none;
     border: none;
-    color: #2b2420;
+    border-radius: 0;
+    color: #f5f1ea;
     font-family: inherit;
     font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 0.13em;
     text-transform: uppercase;
     text-decoration: none;
-    opacity: 0.75;
+    opacity: 0.9;
     white-space: nowrap;
     transition: opacity 0.25s ease;
+    box-shadow: none;
 }
 
 .soltaButton::after {
@@ -105,7 +107,7 @@
     left: 0;
     width: 0;
     height: 1px;
-    background: #2b2420;
+    background: #f5f1ea;
     transition: width 0.35s ease;
 }
 
@@ -124,16 +126,16 @@
     left: clamp(28px, 5vw, 60px);
     transform: translateY(-50%);
     max-width: 560px;
-    color: #2b2420;
+    color: #f5f1ea;
 }
 
 .kicker {
     text-transform: uppercase;
     letter-spacing: 4px;
     font-size: 11px;
-    opacity: 0.6;
+    opacity: 0.75;
     margin: 0 0 14px;
-    color: #6c5f55;
+    color: #efe7dc;
 }
 
 .title {
@@ -142,14 +144,14 @@
     line-height: 1.08;
     margin: 0 0 18px;
     font-family: "Georgia", "Times New Roman", serif;
-    color: #2b2420;
+    color: #ffffff;
 }
 
 .description {
     font-size: 15px;
     line-height: 1.68;
-    color: #4a3e37;
-    opacity: 0.85;
+    color: #f0e6da;
+    opacity: 0.9;
     margin: 0 0 26px;
     max-width: 400px;
 }
@@ -215,6 +217,7 @@
     .soltaButton {
         font-size: 0.6rem;
         letter-spacing: 0.1em;
+        padding: 0;
     }
 
     .text {

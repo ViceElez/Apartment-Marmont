@@ -198,6 +198,11 @@
     overflow: hidden;
 }
 
+.roomImage {
+    object-fit: cover;
+    object-position: center;
+}
+
 /* ─── DIVIDER ────────────────────────────────────────── */
 
 .dividerBar {
@@ -268,11 +273,13 @@
 
     .panelContent {
         padding-top: 0.25rem;
+        width: 100%;
     }
 
     .aptTitle {
         font-size: 1.2rem;
         margin-bottom: 0;
+        text-align: center;
     }
 
     .eyebrow,
@@ -290,8 +297,8 @@
     }
 
     .roomSection {
-        height: 70vh;
-        min-height: 320px;
+        height: 60vh;
+        min-height: 280px;
     }
 
     .dividerLabel {

@@ -22,7 +22,7 @@ export default function SoltaAboutSection() {
 
                 <div className={styles.imageCard}>
                     <Image
-                        src="/images/solta/SoltaBuilding.webp"
+                        src="/images/solta/general/img5.webp"
                         alt="Apartment Šolta exterior"
                         fill
                         className={styles.image}

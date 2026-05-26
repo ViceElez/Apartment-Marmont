@@ -22,7 +22,7 @@ export default function SplitAboutSection() {
 
                 <div className={styles.imageCard}>
                     <Image
-                        src="/images/split/livingRoom2.webp"
+                        src="/images/split/general/doorTwoRooms.webp"
                         alt="Split apartment interior"
                         fill
                         className={styles.image}

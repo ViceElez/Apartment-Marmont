@@ -7,7 +7,7 @@ export default function SoltaHeroSection() {
         <section className={styles.hero}>
             <div className={styles.imageWrap}>
                 <Image
-                    src="/images/solta/SoltaFull.webp"
+                    src="/images/solta/general/img4.webp"
                     alt="Apartment Šolta with Adriatic sea view"
                     fill
                     className={styles.image}
@@ -62,4 +62,3 @@ export default function SoltaHeroSection() {
         </section>
     );
 }
-

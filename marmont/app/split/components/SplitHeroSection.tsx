@@ -7,7 +7,7 @@ export default function SplitHeroSection() {
         <section className={styles.hero}>
             <div className={styles.imageWrap}>
                 <Image
-                    src="/images/split/SplitCity.webp"
+                    src="/images/split/general/SplitCity.webp"
                     alt="Split city waterfront with Diocletian's Palace and Adriatic sea"
                     fill
                     className={styles.image}

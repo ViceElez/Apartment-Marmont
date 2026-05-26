@@ -7,60 +7,61 @@ import styles from "./style/SplitApartmentDetails.module.css";
 type DetailItem = {
     id: string;
     label: string;
-    image: string;
+    images: [string, string, string];
 };
 
 const DETAILS: DetailItem[] = [
     {
         id: "living-room",
         label: "Living room",
-        image: "/images/split/livingRoom1.webp",
-    },
-    {
-        id: "bathroom",
-        label: "Bathroom",
-        image: "/images/split/livingRoom2.webp",
+        images: [
+            "/images/split/livingRoom/img1.webp",
+            "/images/split/livingRoom/img2.webp",
+            "/images/split/livingRoom/img3.webp",
+        ],
     },
     {
         id: "bedroom",
         label: "Bedroom",
-        image: "/images/split/livingRoom1.webp",
+        images: [
+            "/images/split/bedroom/img1.webp",
+            "/images/split/bedroom/img2.webp",
+            "/images/split/bedroom/img3.webp",
+        ],
     },
     {
         id: "balcony",
         label: "Balcony",
-        image: "/images/split/livingRoom2.webp",
-    },
-];
-
-const GALLERY_IMAGES = [
-    {
-        src: "/images/split/livingRoom1.webp",
-        alt: "Split apartment view",
+        images: [
+            "/images/split/general/marmont_teraca1.webp",
+            "/images/split/general/img2.webp",
+            "/images/split/general/img3.webp",
+        ],
     },
     {
-        src: "/images/split/livingRoom2.webp",
-        alt: "Split apartment view",
-    },
-    {
-        src: "/images/split/livingRoom1.webp",
-        alt: "Split apartment view",
+        id: "wc",
+        label: "Bathroom",
+        images: [
+            "/images/split/wc/img1.webp",
+            "/images/split/wc/img2.webp",
+            "/images/split/wc/img3.webp",
+        ],
     },
 ];
 
 export default function SplitApartmentDetails() {
     const [activeId, setActiveId] = useState(DETAILS[0].id);
     const [prevImage, setPrevImage] = useState<string | null>(null);
-    const lastImageRef = useRef(DETAILS[0].image);
+    const lastImageRef = useRef(DETAILS[0].images[0]);
 
     const activeDetail = DETAILS.find((detail) => detail.id === activeId) ?? DETAILS[0];
 
     useEffect(() => {
-        if (lastImageRef.current !== activeDetail.image) {
+        if (lastImageRef.current !== activeDetail.images[0]) {
             setPrevImage(lastImageRef.current);
-            lastImageRef.current = activeDetail.image;
+            lastImageRef.current = activeDetail.images[0];
         }
-    }, [activeDetail.image]);
+    }, [activeDetail.images[0]]);
 
     const handlePrevAnimationEnd = () => {
         setPrevImage(null);
@@ -112,11 +113,11 @@ export default function SplitApartmentDetails() {
                             </div>
                         )}
                         <div
-                            key={activeDetail.image}
+                            key={activeDetail.images[0]}
                             className={`${styles.imageLayer} ${styles.imageCurrent}`}
                         >
                             <Image
-                                src={activeDetail.image}
+                                src={activeDetail.images[0]}
                                 alt={`${activeDetail.label} view`}
                                 fill
                                 className={styles.image}
@@ -127,14 +128,14 @@ export default function SplitApartmentDetails() {
                     </div>
 
                     <div key={activeId} className={styles.galleryStack}>
-                        {GALLERY_IMAGES.slice(0, 2).map((image, index) => (
+                        {activeDetail.images.slice(1).map((src, index) => (
                             <div
-                                key={`${image.src}-${index}-${activeId}`}
+                                key={`${src}-${index}-${activeId}`}
                                 className={`${styles.galleryItem} ${styles.galleryItemAnimated}`}
                             >
                                 <Image
-                                    src={image.src}
-                                    alt={image.alt}
+                                    src={src}
+                                    alt={`${activeDetail.label} detail ${index + 2}`}
                                     fill
                                     className={styles.image}
                                     sizes="(max-width: 900px) 100vw, 24vw"

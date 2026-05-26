@@ -11,7 +11,7 @@ const APARTMENTS = [
     {
         id: "marmont",
         title: "Apartment\nMarmont",
-        image: "/images/split/general/heroImage.jpg",
+        image: "/images/split/general/heroImage.webp",
         imageAlt: "Apartment Marmont – modern mountain home interior",
         description:
             "Nestled in the heart of Split, where contemporary design meets historic charm in a vibrant urban setting.",

@@ -7,60 +7,61 @@ import styles from "@/app/split/components/style/SplitApartmentDetails.module.cs
 type DetailItem = {
     id: string;
     label: string;
-    image: string;
+    images: [string, string, string];
 };
 
 const DETAILS: DetailItem[] = [
     {
         id: "sea-view-lounge",
-        label: "Sea-view lounge",
-        image: "/images/solta/SoltaFull.webp",
+        label: "Living Room",
+        images: [
+            "/images/solta/livingroom/img1.webp",
+            "/images/solta/livingroom/img2.webp",
+            "/images/solta/livingroom/img3.webp",
+        ],
     },
     {
         id: "stone-terrace",
-        label: "Stone terrace",
-        image: "/images/solta/SoltaBuilding.webp",
+        label: "Bedroom",
+        images: [
+            "/images/solta/bedroom/img1.webp",
+            "/images/solta/bedroom/img2.webp",
+            "/images/solta/bedroom/img3.webp",
+        ],
     },
     {
         id: "quiet-bedroom",
-        label: "Quiet bedroom",
-        image: "/images/solta/SoltaFull.webp",
+        label: "Balcony",
+        images: [
+            "/images/solta/general/img1.webp",
+            "/images/solta/general/img2.webp",
+            "/images/solta/general/img3.webp",
+        ],
     },
     {
         id: "outdoor-dining",
-        label: "Outdoor dining",
-        image: "/images/solta/SoltaBuilding.webp",
-    },
-];
-
-const GALLERY_IMAGES = [
-    {
-        src: "/images/solta/SoltaFull.webp",
-        alt: "Apartment Šolta view",
-    },
-    {
-        src: "/images/solta/SoltaBuilding.webp",
-        alt: "Apartment Šolta exterior",
-    },
-    {
-        src: "/images/solta/SoltaFull.webp",
-        alt: "Apartment Šolta view",
+        label: "Bathroom",
+        images: [
+            "/images/solta/wc/img1.webp",
+            "/images/solta/wc/img2.webp",
+            "/images/solta/wc/img3.webp",
+        ],
     },
 ];
 
 export default function SoltaApartmentDetails() {
     const [activeId, setActiveId] = useState(DETAILS[0].id);
     const [prevImage, setPrevImage] = useState<string | null>(null);
-    const lastImageRef = useRef(DETAILS[0].image);
+    const lastImageRef = useRef(DETAILS[0].images[0]);
 
     const activeDetail = DETAILS.find((detail) => detail.id === activeId) ?? DETAILS[0];
 
     useEffect(() => {
-        if (lastImageRef.current !== activeDetail.image) {
+        if (lastImageRef.current !== activeDetail.images[0]) {
             setPrevImage(lastImageRef.current);
-            lastImageRef.current = activeDetail.image;
+            lastImageRef.current = activeDetail.images[0];
         }
-    }, [activeDetail.image]);
+    }, [activeDetail.images[0]]);
 
     const handlePrevAnimationEnd = () => {
         setPrevImage(null);
@@ -112,11 +113,11 @@ export default function SoltaApartmentDetails() {
                             </div>
                         )}
                         <div
-                            key={activeDetail.image}
+                            key={activeDetail.images[0]}
                             className={`${styles.imageLayer} ${styles.imageCurrent}`}
                         >
                             <Image
-                                src={activeDetail.image}
+                                src={activeDetail.images[0]}
                                 alt={`${activeDetail.label} view`}
                                 fill
                                 className={styles.image}
@@ -127,14 +128,14 @@ export default function SoltaApartmentDetails() {
                     </div>
 
                     <div key={activeId} className={styles.galleryStack}>
-                        {GALLERY_IMAGES.slice(0, 2).map((image, index) => (
+                        {activeDetail.images.slice(1).map((src, index) => (
                             <div
-                                key={`${image.src}-${index}-${activeId}`}
+                                key={`${src}-${index}-${activeId}`}
                                 className={`${styles.galleryItem} ${styles.galleryItemAnimated}`}
                             >
                                 <Image
-                                    src={image.src}
-                                    alt={image.alt}
+                                    src={src}
+                                    alt={`${activeDetail.label} detail ${index + 2}`}
                                     fill
                                     className={styles.image}
                                     sizes="(max-width: 900px) 100vw, 24vw"
@@ -147,4 +148,3 @@ export default function SoltaApartmentDetails() {
         </section>
     );
 }
-

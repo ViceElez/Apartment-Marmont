@@ -9,6 +9,7 @@ import { topSights } from "@/app/data/split/topSights";
 import SplitApartmentDetails from "@/app/split/components/SplitApartmentDetails";
 import SplitAboutSection from "@/app/split/components/SplitAboutSection";
 import SplitHeroSection from "@/app/split/components/SplitHeroSection";
+import SplitDirectionsStepper from "@/app/split/components/SplitDirectionsStepper";
 
 import styles from "./page.module.css";
 
@@ -154,26 +155,7 @@ export default function SplitPage() {
                         <details className={styles.directionsItem}>
                             <summary className={styles.directionsSummary}>Ferry port</summary>
                             <div className={styles.directionsBody}>
-                                <div className={styles.directionsText}>
-                                    <p>
-                                        Exit the ferry terminal and head toward the promenade. Walk west along Riva with
-                                        the sea on your right. After 10–12 minutes, you will reach Trumbiceva obala 15.
-                                    </p>
-                                    <p>
-                                        For a quicker arrival, taxis are available directly outside the terminal and
-                                        will get you there in about 5 minutes.
-                                    </p>
-                                </div>
-                                <div className={styles.directionsImages}>
-                                    <div className={styles.directionsImageCard}>
-                                        <img src="/images/split/SplitCity.webp" alt="Split ferry terminal exit" />
-                                        <span className={styles.directionsCaption}>Exit the ferry terminal to the promenade.</span>
-                                    </div>
-                                    <div className={styles.directionsImageCard}>
-                                        <img src="/images/split/SplitBuildings.PNG" alt="Riva promenade toward apartment" />
-                                        <span className={styles.directionsCaption}>Follow Riva to Trumbiceva obala 15.</span>
-                                    </div>
-                                </div>
+                                <SplitDirectionsStepper />
                             </div>
                         </details>
                     </div>
