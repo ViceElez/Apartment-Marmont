@@ -116,7 +116,7 @@ export default function ApartmentsSection() {
     const activeIndex = apartments.findIndex((a) => a.id === activeId);
 
     return (
-        <div ref={outerRef} className={styles.outerWrapper}>
+        <div ref={outerRef} className={styles.outerWrapper} id="about">
             <div ref={wrapperRef} className={styles.wrapper}>
 
                 {/* SPACER — holds space when panel becomes fixed on mobile */}

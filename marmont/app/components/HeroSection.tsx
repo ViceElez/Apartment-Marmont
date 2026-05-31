@@ -199,7 +199,7 @@ export default function Hero() {
                         </div>
 
                         <a href="#about"   className={styles.navLink}>About</a>
-                        <a href="#contact" className={styles.navLink}>Contact</a>
+                        <a href="#expect" className={styles.navLink}>What to Expect</a>
                     </nav>
                 </div>
 

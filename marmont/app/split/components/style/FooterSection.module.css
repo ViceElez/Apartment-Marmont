@@ -1,0 +1,27 @@
+/* -- FOOTER CTA -- */
+.footerCta {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+.footerCta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+.footerCta h2 { margin: 16px 0 12px; }
+.footerCta p { max-width: 440px; margin: 0 auto 40px; }
+.footerBottom {
+    background: var(--mid);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footerBottom p { font-size: 0.78rem; color: var(--muted); }
+

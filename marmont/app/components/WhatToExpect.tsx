@@ -20,24 +20,9 @@ const categories = [
         color: "#1a2820",
     },
     {
-        id: "food",
-        label: "Food & Drink",
-        eyebrow: "02 — Taste",
-        title: "Dalmatian Table",
-        desc: "Fresh octopus salad, grilled fish straight off the boat, and local plavac mali wine. The old town has everything from no-frills konobas to harbour-side restaurants with views of the sunset.",
-        accent: "#c4a382",
-        items: [
-            { name: "Pet Bunara", detail: "Fine dining, old town" },
-            { name: "Konoba Stomorica", detail: "Local fish & wine" },
-            { name: "Split Market", detail: "Morning produce & cheese" },
-            { name: "Forum Café", detail: "Coffee by the Roman ruins" },
-        ],
-        color: "#221a10",
-    },
-    {
         id: "zadar",
         label: "Split",
-        eyebrow: "03 — Discover",
+        eyebrow: "02 — Discover",
         title: "The City Itself",
         desc: "Alfred Hitchcock called it the most beautiful sunset in the world. The Sea Organ hums with every wave. Roman ruins sit between boutique shops and ice cream stalls. Give yourself a full evening to wander.",
         accent: "#a08bb0",
@@ -52,7 +37,7 @@ const categories = [
     {
         id: "beaches",
         label: "Beaches",
-        eyebrow: "04 — Unwind",
+        eyebrow: "03 — Unwind",
         title: "Sun & Sea",
         desc: "Saharun on Dugi Otok is worth the ferry alone — crystal clear water, white pebbles, almost no infrastructure. Kolovare is a 10 minute walk from the apartment for a quick morning swim.",
         accent: "#7ab0c4",
@@ -69,12 +54,14 @@ const categories = [
 export default function WhatToExpect() {
     const [active, setActive] = useState(categories[0].id);
     const [fading, setFading] = useState(false);
+    const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
     const current = categories.find((c) => c.id === active) ?? categories[0];
     const activeIndex = categories.findIndex((c) => c.id === active);
 
     const switchTo = (id: string) => {
         if (id === active) return;
+        setHoveredItem(null);
         setFading(true);
         setTimeout(() => {
             setActive(id);
@@ -83,7 +70,7 @@ export default function WhatToExpect() {
     };
 
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id="expect">
             <div className={styles.topFade} />
 
             <div className={styles.inner}>
@@ -119,7 +106,12 @@ export default function WhatToExpect() {
                         <p className={styles.desc}>{current.desc}</p>
                         <ul className={styles.list}>
                             {current.items.map((item) => (
-                                <li key={item.name} className={styles.listItem}>
+                                <li
+                                    key={item.name}
+                                    className={styles.listItem}
+                                    onMouseEnter={() => setHoveredItem(item.name)}
+                                    onMouseLeave={() => setHoveredItem(null)}
+                                >
                                     <span className={styles.listDot} style={{ background: current.accent }} />
                                     <span className={styles.listName}>{item.name}</span>
                                     <span className={styles.listDetail}>{item.detail}</span>
@@ -130,6 +122,21 @@ export default function WhatToExpect() {
 
                     <div className={styles.contentRight}>
                         <div className={styles.imagePlaceholder} style={{ background: current.color }}>
+                            <img
+                                className={`${styles.imagePreview} ${hoveredItem ? styles.imagePreviewActive : ""}`}
+                                src={
+                                    hoveredItem === "Plitvice Lakes"
+                                        ? "/images/split/destination/plitvice.webp"
+                                        : hoveredItem === "Krka Waterfalls"
+                                            ? "/images/split/destination/krka.webp"
+                                            : hoveredItem === "Ugljan Island"
+                                                ? "/images/split/destination/ugljan.webp"
+                                                : hoveredItem === "Dugi Otok"
+                                                    ? "/images/split/destination/dugi.webp"
+                                                    : "/images/split/destination/krka.webp"
+                                }
+                                alt={hoveredItem ? `${hoveredItem} preview` : `${current.label} preview`}
+                            />
                             <div
                                 className={styles.imagePlaceholderGlow}
                                 style={{ background: `radial-gradient(ellipse at 40% 50%, ${current.accent}22 0%, transparent 70%)` }}

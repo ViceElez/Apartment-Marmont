@@ -1,17 +1,20 @@
-import SoltaApartmentDetails from "@/app/solta/components/SoltaApartmentDetails";
-import SoltaAboutSection from "@/app/solta/components/SoltaAboutSection";
+import AboutSoltaSection from "@/app/solta/components/AboutSoltaSection";
+import FooterCtaSection from "@/app/solta/components/FooterCtaSection";
+import GallerySection from "@/app/solta/components/GallerySection";
+import PageEffects from "@/app/solta/components/PageEffects";
+import StickyNav from "@/app/solta/components/StickyNav";
+import baseStyles from "@/app/solta/components/style/SoltaBase.module.css";
 import SoltaHeroSection from "@/app/solta/components/SoltaHeroSection";
-
-import styles from "../split/page.module.css";
 
 export default function SoltaPage(){
     return(
-        <main className={styles.page}>
-            <div className={styles.content}>
-                <SoltaHeroSection />
-                <SoltaAboutSection />
-                <SoltaApartmentDetails />
-            </div>
+        <main className={baseStyles.page}>
+            <StickyNav />
+            <SoltaHeroSection />
+            <AboutSoltaSection />
+            <GallerySection />
+            <FooterCtaSection />
+            <PageEffects />
         </main>
     )
 }

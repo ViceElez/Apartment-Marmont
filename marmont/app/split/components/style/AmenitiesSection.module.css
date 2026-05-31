@@ -1,0 +1,36 @@
+/* -- AMENITIES -- */
+.amenitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+.amenityItem {
+    background: var(--mid);
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: background 0.2s;
+}
+.amenityItem:hover { background: var(--warm); }
+.amenityIcon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(201, 168, 76, 0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+    font-size: 16px;
+}
+.amenityName { font-size: 0.85rem; color: var(--text); font-weight: 400; }
+
+@media (max-width: 900px) {
+    .amenitiesGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .amenitiesGrid { grid-template-columns: 1fr 1fr; }
+}
+
